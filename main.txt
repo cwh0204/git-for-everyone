@@ -1,2 +1,2 @@
 Title: Git for eveyone
-SubTitle: Git!!
+SubTitle: Git hub!!
