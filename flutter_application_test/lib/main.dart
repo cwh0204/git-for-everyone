@@ -30,11 +30,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Color buttonColor = Colors.white;
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQueryData = MediaQuery.of(context);
     double screenWidth = mediaQueryData.size.width;
     double screenHeigth = mediaQueryData.size.height;
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -56,9 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: screenWidth * 0.50,
                           height: screenHeigth * 0.05,
                           child: TextField(
-                            obscureText: true,
+                            textAlign: TextAlign.left,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
+                              hintText: "아이디 or @이하 모두 입력",
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 10.0),
                             ),
                           ),
                         ),
@@ -66,10 +71,15 @@ class _MyHomePageState extends State<MyHomePage> {
                           width: screenWidth * 0.50,
                           height: screenHeigth * 0.05,
                           child: TextField(
+                            textAlign: TextAlign.left,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(),
+                              hintText: "비밀번호",
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 8.0, horizontal: 10.0),
                             ),
+                            // 밑줄 제거
                           ),
                         ),
                       ],
@@ -78,6 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
                   InkWell(
                     onTap: () {
                       setState(() {
+                        if (buttonColor == Colors.white) {
+                          buttonColor = Colors.black38;
+                        } else if (buttonColor == Colors.black38) {
+                          buttonColor = Colors.green;
+                        } else if (buttonColor == Colors.green) {
+                          buttonColor = Colors.red;
+                        } else if (buttonColor == Colors.red) {
+                          buttonColor = Colors.white;
+                        }
                         // Toggle light when tapped.
                       });
                     },
@@ -85,6 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       width: screenWidth * 0.24,
                       height: screenHeigth * 0.1,
                       decoration: BoxDecoration(
+                        color: buttonColor,
                         border: Border.all(
                           width: 1,
                           color: Colors.grey,
